@@ -18,9 +18,9 @@ used on the popular 4chan imageboard.
 
 ## How do I compile and run the thing?
 
-You'll want to use ant. Doing so, the everything is very simple:
+You'll want to use ant. Doing so, everything is very simple:
 
-*   "ant compile" compiles the project.
-*   "ant test" lanches the GUI.
-*   "ant jar" creates everything you need for a stand-alone run in the dist dir.
-*   "ant zip" creates housefire.zip in the root, containing the dist dir.
+*   `ant compile` compiles the project.
+*   `ant test` lanches the GUI.
+*   `ant jar` creates everything you need for a stand-alone run in the dist dir.
+*   `ant zip` creates housefire.zip in the root, containing the dist dir.
