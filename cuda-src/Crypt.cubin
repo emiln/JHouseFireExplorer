@@ -1,0 +1,1081 @@
+	.version 1.4
+	.target sm_10, map_f64_to_f32
+	// compiled with C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v4.1\\bin/../open64/lib//be.exe
+	// nvopencc 4.1 built on 2012-01-13
+
+	//-----------------------------------------------------------
+	// Compiling C:/Users/PINKPR~1/AppData/Local/Temp/tmpxft_000011f0_00000000-11_Crypt.cpp3.i (C:/Users/PINKPR~1/AppData/Local/Temp/ccBI#.a02116)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_10, Endian:little, Pointer Size:64
+	//  -O3	(Optimization level)
+	//  -g0	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"C:/Users/PINKPR~1/AppData/Local/Temp/tmpxft_000011f0_00000000-10_Crypt.cudafe2.gpu"
+	.file	2	"c:\program files (x86)\microsoft visual studio 10.0\vc\include\codeanalysis\sourceannotations.h"
+	.file	3	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v4.1\bin/../include\crt/device_runtime.h"
+	.file	4	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v4.1\bin/../include\host_defines.h"
+	.file	5	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v4.1\bin/../include\builtin_types.h"
+	.file	6	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\device_types.h"
+	.file	7	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\host_defines.h"
+	.file	8	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\driver_types.h"
+	.file	9	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\surface_types.h"
+	.file	10	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\texture_types.h"
+	.file	11	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\vector_types.h"
+	.file	12	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\builtin_types.h"
+	.file	13	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v4.1\bin/../include\device_launch_parameters.h"
+	.file	14	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\crt\storage_class.h"
+	.file	15	"Crypt.cu"
+	.file	16	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v4.1\bin/../include\common_functions.h"
+	.file	17	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\math_functions.h"
+	.file	18	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\math_constants.h"
+	.file	19	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\device_functions.h"
+	.file	20	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\sm_11_atomic_functions.h"
+	.file	21	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\sm_12_atomic_functions.h"
+	.file	22	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\sm_13_double_functions.h"
+	.file	23	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\sm_20_atomic_functions.h"
+	.file	24	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\sm_20_intrinsics.h"
+	.file	25	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\surface_functions.h"
+	.file	26	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\texture_fetch_functions.h"
+	.file	27	"c:\program files\nvidia gpu computing toolkit\cuda\v4.1\include\math_functions_dbl_ptx1.h"
+
+	.global .align 4 .b8 C[28];
+	.global .align 4 .b8 D[28];
+	.global .align 1 .b8 KS[768];
+	.global .align 4 .b8 E[48];
+	.global .align 1 .b8 preS[48];
+	.global .align 1 .b8 IP[64] = {58,50,42,34,26,18,10,2,60,52,44,36,28,20,12,4,62,54,46,38,30,22,14,6,64,56,48,40,32,24,16,8,57,49,41,33,25,17,9,1,59,51,43,35,27,19,11,3,61,53,45,37,29,21,13,5,63,55,47,39,31,23,15,7};
+	.global .align 1 .b8 FP[64] = {40,8,48,16,56,24,64,32,39,7,47,15,55,23,63,31,38,6,46,14,54,22,62,30,37,5,45,13,53,21,61,29,36,4,44,12,52,20,60,28,35,3,43,11,51,19,59,27,34,2,42,10,50,18,58,26,33,1,41,9,49,17,57,25};
+	.global .align 1 .b8 PC1_C[28] = {57,49,41,33,25,17,9,1,58,50,42,34,26,18,10,2,59,51,43,35,27,19,11,3,60,52,44,36};
+	.global .align 1 .b8 PC1_D[28] = {63,55,47,39,31,23,15,7,62,54,46,38,30,22,14,6,61,53,45,37,29,21,13,5,28,20,12,4};
+	.global .align 1 .b8 shifts[16] = {1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,1};
+	.global .align 1 .b8 PC2_C[24] = {14,17,11,24,1,5,3,28,15,6,21,10,23,19,12,4,26,8,16,7,27,20,13,2};
+	.global .align 1 .b8 PC2_D[24] = {41,52,31,37,47,55,30,40,51,45,33,48,44,49,39,56,34,53,46,42,50,36,29,32};
+	.global .align 1 .b8 S[512] = {14,4,13,1,2,15,11,8,3,10,6,12,5,9,0,7,0,15,7,4,14,2,13,1,10,6,12,11,9,5,3,8,4,1,14,8,13,6,2,11,15,12,9,7,3,10,5,0,15,12,8,2,4,9,1,7,5,11,3,14,10,0,6,13,15,1,8,14,6,11,3,4,9,7,2,13,12,0,5,10,3,13,4,7,15,2,8,14,12,0,1,10,6,9,11,5,0,14,7,11,10,4,13,1,5,8,12,6,9,3,2,15,13,8,10,1,3,15,4,2,11,6,7,12,0,5,14,9,10,0,9,14,6,3,15,5,1,13,12,7,11,4,2,8,13,7,0,9,3,4,6,10,2,8,5,14,12,11,15,1,13,6,4,9,8,15,3,0,11,1,2,12,5,10,14,7,1,10,13,0,6,9,8,7,4,15,14,3,11,5,2,12,7,13,14,3,0,6,9,10,1,2,8,5,11,12,4,15,13,8,11,5,6,15,0,3,4,7,2,12,1,10,14,9,10,6,9,0,12,11,7,13,15,1,3,14,5,2,8,4,3,15,0,6,10,1,13,8,9,4,5,11,12,7,2,14,2,12,4,1,7,10,11,6,8,5,3,15,13,0,14,9,14,11,2,12,4,7,13,1,5,0,15,10,3,9,8,6,4,2,1,11,10,13,7,8,15,9,12,5,6,3,0,14,11,8,12,7,1,14,2,13,6,15,0,9,10,4,5,3,12,1,10,15,9,2,6,8,0,13,3,4,14,7,5,11,10,15,4,2,7,12,9,5,6,1,13,14,0,11,3,8,9,14,15,5,2,8,12,3,7,0,4,10,1,13,11,6,4,3,2,12,9,5,15,10,11,14,1,7,6,0,8,13,4,11,2,14,15,0,8,13,3,12,9,7,5,10,6,1,13,0,11,7,4,9,1,10,14,3,5,12,2,15,8,6,1,4,11,13,12,3,7,14,10,15,6,8,0,5,9,2,6,11,13,8,1,4,10,7,9,5,0,15,14,2,3,12,13,2,8,4,6,15,11,1,10,9,3,14,5,0,12,7,1,15,13,8,10,3,7,4,12,5,6,11,0,14,9,2,7,11,4,1,9,12,14,2,0,6,10,13,15,3,5,8,2,1,14,7,4,10,8,13,15,12,9,0,3,5,6,11};
+	.global .align 1 .b8 P[32] = {16,7,20,21,29,12,28,17,1,15,23,26,5,18,31,10,2,8,24,14,32,27,3,9,19,13,30,6,22,11,4,25};
+
+	.entry _Z5cryptPcS_S_ (
+		.param .u64 __cudaparm__Z5cryptPcS_S____val_parampw,
+		.param .u64 __cudaparm__Z5cryptPcS_S____val_paramsalt,
+		.param .u64 __cudaparm__Z5cryptPcS_S____val_paramtrip)
+	{
+	.reg .u16 %rh<286>;
+	.reg .u32 %r<210>;
+	.reg .u64 %rd<84>;
+	.reg .pred %p<28>;
+	.local .align 1 .b8 __cuda___cuda_local_var_98542_10_non_const_block_0944[66];
+	.local .align 1 .b8 __cuda___cuda_local_var_98444_20_non_const_right_661010[32];
+	.local .align 1 .b8 __cuda___cuda_local_var_98446_10_non_const_f_981042[32];
+	.local .align 1 .b8 __cuda___cuda_local_var_98444_10_non_const_left_1301074[32];
+	.loc	15	378	0
+$LDWbegin__Z5cryptPcS_S_:
+	ld.param.u64 	%rd1, [__cudaparm__Z5cryptPcS_S____val_parampw];
+	mov.s64 	%rd2, %rd1;
+	.loc	15	385	0
+	mov.s16 	%rh1, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+0], %rh1;
+	mov.s16 	%rh2, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+1], %rh2;
+	mov.s16 	%rh3, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+2], %rh3;
+	mov.s16 	%rh4, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+3], %rh4;
+	mov.s16 	%rh5, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+4], %rh5;
+	mov.s16 	%rh6, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+5], %rh6;
+	mov.s16 	%rh7, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+6], %rh7;
+	mov.s16 	%rh8, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+7], %rh8;
+	mov.s16 	%rh9, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+8], %rh9;
+	mov.s16 	%rh10, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+9], %rh10;
+	mov.s16 	%rh11, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+10], %rh11;
+	mov.s16 	%rh12, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+11], %rh12;
+	mov.s16 	%rh13, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+12], %rh13;
+	mov.s16 	%rh14, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+13], %rh14;
+	mov.s16 	%rh15, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+14], %rh15;
+	mov.s16 	%rh16, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+15], %rh16;
+	mov.s16 	%rh17, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+16], %rh17;
+	mov.s16 	%rh18, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+17], %rh18;
+	mov.s16 	%rh19, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+18], %rh19;
+	mov.s16 	%rh20, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+19], %rh20;
+	mov.s16 	%rh21, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+20], %rh21;
+	mov.s16 	%rh22, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+21], %rh22;
+	mov.s16 	%rh23, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+22], %rh23;
+	mov.s16 	%rh24, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+23], %rh24;
+	mov.s16 	%rh25, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+24], %rh25;
+	mov.s16 	%rh26, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+25], %rh26;
+	mov.s16 	%rh27, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+26], %rh27;
+	mov.s16 	%rh28, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+27], %rh28;
+	mov.s16 	%rh29, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+28], %rh29;
+	mov.s16 	%rh30, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+29], %rh30;
+	mov.s16 	%rh31, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+30], %rh31;
+	mov.s16 	%rh32, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+31], %rh32;
+	mov.s16 	%rh33, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+32], %rh33;
+	mov.s16 	%rh34, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+33], %rh34;
+	mov.s16 	%rh35, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+34], %rh35;
+	mov.s16 	%rh36, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+35], %rh36;
+	mov.s16 	%rh37, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+36], %rh37;
+	mov.s16 	%rh38, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+37], %rh38;
+	mov.s16 	%rh39, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+38], %rh39;
+	mov.s16 	%rh40, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+39], %rh40;
+	mov.s16 	%rh41, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+40], %rh41;
+	mov.s16 	%rh42, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+41], %rh42;
+	mov.s16 	%rh43, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+42], %rh43;
+	mov.s16 	%rh44, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+43], %rh44;
+	mov.s16 	%rh45, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+44], %rh45;
+	mov.s16 	%rh46, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+45], %rh46;
+	mov.s16 	%rh47, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+46], %rh47;
+	mov.s16 	%rh48, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+47], %rh48;
+	mov.s16 	%rh49, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+48], %rh49;
+	mov.s16 	%rh50, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+49], %rh50;
+	mov.s16 	%rh51, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+50], %rh51;
+	mov.s16 	%rh52, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+51], %rh52;
+	mov.s16 	%rh53, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+52], %rh53;
+	mov.s16 	%rh54, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+53], %rh54;
+	mov.s16 	%rh55, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+54], %rh55;
+	mov.s16 	%rh56, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+55], %rh56;
+	mov.s16 	%rh57, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+56], %rh57;
+	mov.s16 	%rh58, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+57], %rh58;
+	mov.s16 	%rh59, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+58], %rh59;
+	mov.s16 	%rh60, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+59], %rh60;
+	mov.s16 	%rh61, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+60], %rh61;
+	mov.s16 	%rh62, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+61], %rh62;
+	mov.s16 	%rh63, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+62], %rh63;
+	mov.s16 	%rh64, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+63], %rh64;
+	mov.s16 	%rh65, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+64], %rh65;
+	mov.s16 	%rh66, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+65], %rh66;
+	.loc	15	388	0
+	ld.global.s8 	%r1, [%rd1+0];
+	mov.u32 	%r2, 0;
+	setp.eq.s32 	%p1, %r1, %r2;
+	@%p1 bra 	$L_0_33282;
+	mov.s32 	%r3, 0;
+	mov.u64 	%rd3, __cuda___cuda_local_var_98542_10_non_const_block_0944;
+$L_0_33026:
+	.loc	15	391	0
+	shr.s32 	%r4, %r1, 6;
+	and.b32 	%r5, %r4, 1;
+	cvt.s64.s32 	%rd4, %r3;
+	add.u64 	%rd5, %rd4, %rd3;
+	st.local.s8 	[%rd5+0], %r5;
+	shr.s32 	%r6, %r1, 5;
+	and.b32 	%r7, %r6, 1;
+	add.s32 	%r8, %r3, 1;
+	cvt.s64.s32 	%rd6, %r8;
+	add.u64 	%rd7, %rd6, %rd3;
+	st.local.s8 	[%rd7+0], %r7;
+	shr.s32 	%r9, %r1, 4;
+	and.b32 	%r10, %r9, 1;
+	add.s32 	%r11, %r3, 2;
+	cvt.s64.s32 	%rd8, %r11;
+	add.u64 	%rd9, %rd8, %rd3;
+	st.local.s8 	[%rd9+0], %r10;
+	shr.s32 	%r12, %r1, 3;
+	and.b32 	%r13, %r12, 1;
+	add.s32 	%r14, %r3, 3;
+	cvt.s64.s32 	%rd10, %r14;
+	add.u64 	%rd11, %rd10, %rd3;
+	st.local.s8 	[%rd11+0], %r13;
+	shr.s32 	%r15, %r1, 2;
+	and.b32 	%r16, %r15, 1;
+	add.s32 	%r17, %r3, 4;
+	cvt.s64.s32 	%rd12, %r17;
+	add.u64 	%rd13, %rd12, %rd3;
+	st.local.s8 	[%rd13+0], %r16;
+	shr.s32 	%r18, %r1, 1;
+	and.b32 	%r19, %r18, 1;
+	add.s32 	%r20, %r3, 5;
+	cvt.s64.s32 	%rd14, %r20;
+	add.u64 	%rd15, %rd14, %rd3;
+	st.local.s8 	[%rd15+0], %r19;
+	and.b32 	%r21, %r1, 1;
+	add.s32 	%r22, %r3, 6;
+	cvt.s64.s32 	%rd16, %r22;
+	add.u64 	%rd17, %rd16, %rd3;
+	st.local.s8 	[%rd17+0], %r21;
+	.loc	15	392	0
+	add.u64 	%rd2, %rd2, 1;
+	.loc	15	393	0
+	ld.global.s8 	%r1, [%rd2+0];
+	.loc	15	388	0
+	add.s32 	%r3, %r3, 8;
+	mov.u32 	%r23, 0;
+	setp.eq.s32 	%p2, %r1, %r23;
+	@%p2 bra 	$L_0_33794;
+	mov.u32 	%r24, 63;
+	setp.le.s32 	%p3, %r3, %r24;
+	@%p3 bra 	$L_0_33026;
+$L_0_33794:
+$L_0_33282:
+	mov.u64 	%rd3, __cuda___cuda_local_var_98542_10_non_const_block_0944;
+	mov.u64 	%rd18, C;
+	mov.u64 	%rd19, D;
+	mov.u64 	%rd20, PC1_C;
+	mov.s64 	%rd21, %rd18;
+	mov.u64 	%rd22, PC1_D;
+	mov.s64 	%rd23, %rd19;
+	mov.s32 	%r25, 0;
+$Lt_0_34562:
+ //<loop> Loop body line 388, nesting depth: 1, iterations: 28
+	.loc	15	145	0
+	ld.global.s8 	%rh67, [%rd20+0];
+	cvt.s64.s8 	%rd24, %rh67;
+	add.u64 	%rd25, %rd24, %rd3;
+	ld.local.s8 	%rh68, [%rd25+-1];
+	st.global.s8 	[%rd21+0], %rh68;
+	.loc	15	146	0
+	ld.global.s8 	%rh69, [%rd22+0];
+	cvt.s64.s8 	%rd26, %rh69;
+	add.u64 	%rd27, %rd26, %rd3;
+	ld.local.s8 	%rh70, [%rd27+-1];
+	st.global.s8 	[%rd23+0], %rh70;
+	add.s32 	%r25, %r25, 1;
+	add.u64 	%rd23, %rd23, 1;
+	add.u64 	%rd22, %rd22, 1;
+	add.u64 	%rd21, %rd21, 1;
+	add.u64 	%rd20, %rd20, 1;
+	mov.u32 	%r26, 28;
+	setp.ne.s32 	%p4, %r25, %r26;
+	@%p4 bra 	$Lt_0_34562;
+	mov.u64 	%rd28, shifts;
+	mov.s64 	%rd29, 0;
+	mov.s32 	%r25, 0;
+	mov.u64 	%rd30, PC2_C;
+	mov.u64 	%rd31, PC2_D;
+	mov.u64 	%rd32, KS;
+$Lt_0_35586:
+ //<loop> Loop body line 146, nesting depth: 1, iterations: 16
+	ld.global.s8 	%r27, [%rd28+0];
+	mov.u32 	%r28, 0;
+	setp.le.s32 	%p5, %r27, %r28;
+	@%p5 bra 	$Lt_0_35842;
+	mov.s32 	%r29, %r27;
+	mov.s32 	%r30, 0;
+	mov.s32 	%r31, %r29;
+$Lt_0_36354:
+ //<loop> Loop body line 146, nesting depth: 2, estimated iterations: unknown
+	ld.global.v4.s8 	{%r32,%r33,%r34,%r35}, [C+0];
+	ld.global.v4.s8 	{%r36,%r37,%r38,%r39}, [C+4];
+	st.global.v4.s8 	[C+0], {%r33,%r34,%r35,%r36};
+	ld.global.v4.s8 	{%r40,%r41,%r42,%r43}, [C+8];
+	st.global.v4.s8 	[C+4], {%r37,%r38,%r39,%r40};
+	ld.global.v4.s8 	{%r44,%r45,%r46,%r47}, [C+12];
+	st.global.v4.s8 	[C+8], {%r41,%r42,%r43,%r44};
+	ld.global.v4.s8 	{%r48,%r49,%r50,%r51}, [C+16];
+	st.global.v4.s8 	[C+12], {%r45,%r46,%r47,%r48};
+	ld.global.v4.s8 	{%r52,%r53,%r54,%r55}, [C+20];
+	st.global.v4.s8 	[C+16], {%r49,%r50,%r51,%r52};
+	ld.global.v4.s8 	{%r56,%r57,%r58,%r59}, [C+24];
+	st.global.v4.s8 	[C+20], {%r53,%r54,%r55,%r56};
+	st.global.v4.s8 	[C+24], {%r57,%r58,%r59,%r32};
+	ld.global.v4.s8 	{%r60,%r61,%r62,%r63}, [D+0];
+	ld.global.v4.s8 	{%r64,%r65,%r66,%r67}, [D+4];
+	st.global.v4.s8 	[D+0], {%r61,%r62,%r63,%r64};
+	ld.global.v4.s8 	{%r68,%r69,%r70,%r71}, [D+8];
+	st.global.v4.s8 	[D+4], {%r65,%r66,%r67,%r68};
+	ld.global.v4.s8 	{%r72,%r73,%r74,%r75}, [D+12];
+	st.global.v4.s8 	[D+8], {%r69,%r70,%r71,%r72};
+	ld.global.v4.s8 	{%r76,%r77,%r78,%r79}, [D+16];
+	st.global.v4.s8 	[D+12], {%r73,%r74,%r75,%r76};
+	ld.global.v4.s8 	{%r80,%r81,%r82,%r83}, [D+20];
+	st.global.v4.s8 	[D+16], {%r77,%r78,%r79,%r80};
+	ld.global.v4.s8 	{%r84,%r85,%r86,%r87}, [D+24];
+	st.global.v4.s8 	[D+20], {%r81,%r82,%r83,%r84};
+	st.global.v4.s8 	[D+24], {%r85,%r86,%r87,%r60};
+	.loc	15	168	0
+	add.s32 	%r30, %r30, 1;
+	setp.ne.s32 	%p6, %r27, %r30;
+	@%p6 bra 	$Lt_0_36354;
+$Lt_0_35842:
+	mov.s64 	%rd33, %rd30;
+	mov.s64 	%rd34, %rd31;
+	add.u64 	%rd35, %rd29, %rd32;
+	mov.s32 	%r88, 0;
+$Lt_0_37378:
+ //<loop> Loop body line 168, nesting depth: 2, iterations: 24
+	.loc	15	174	0
+	ld.global.s8 	%r89, [%rd33+0];
+	cvt.s64.s32 	%rd36, %r89;
+	add.u64 	%rd37, %rd36, %rd18;
+	ld.global.s8 	%rh71, [%rd37+-1];
+	st.global.s8 	[%rd35+0], %rh71;
+	.loc	15	175	0
+	ld.global.s8 	%r90, [%rd34+0];
+	cvt.s64.s32 	%rd38, %r90;
+	add.u64 	%rd39, %rd38, %rd19;
+	ld.global.s8 	%rh72, [%rd39+-29];
+	st.global.s8 	[%rd35+24], %rh72;
+	add.s32 	%r88, %r88, 1;
+	add.u64 	%rd35, %rd35, 1;
+	add.u64 	%rd34, %rd34, 1;
+	add.u64 	%rd33, %rd33, 1;
+	mov.u32 	%r91, 24;
+	setp.ne.s32 	%p7, %r88, %r91;
+	@%p7 bra 	$Lt_0_37378;
+	add.s32 	%r25, %r25, 1;
+	add.u64 	%rd29, %rd29, 48;
+	add.u64 	%rd28, %rd28, 1;
+	mov.u32 	%r92, 16;
+	setp.ne.s32 	%p8, %r25, %r92;
+	@%p8 bra 	$Lt_0_35586;
+	.loc	15	181	0
+	mov.s32 	%r93, 32;
+	mov.s32 	%r94, 1;
+	mov.s32 	%r95, 2;
+	mov.s32 	%r96, 3;
+	st.global.v4.s8 	[E+0], {%r93,%r94,%r95,%r96};
+	mov.s32 	%r97, 4;
+	mov.s32 	%r98, 5;
+	mov.s32 	%r99, 4;
+	mov.s32 	%r100, 5;
+	st.global.v4.s8 	[E+4], {%r97,%r98,%r99,%r100};
+	mov.s32 	%r101, 6;
+	mov.s32 	%r102, 7;
+	mov.s32 	%r103, 8;
+	mov.s32 	%r104, 9;
+	st.global.v4.s8 	[E+8], {%r101,%r102,%r103,%r104};
+	mov.s32 	%r105, 8;
+	mov.s32 	%r106, 9;
+	mov.s32 	%r107, 10;
+	mov.s32 	%r108, 11;
+	st.global.v4.s8 	[E+12], {%r105,%r106,%r107,%r108};
+	mov.s32 	%r109, 12;
+	mov.s32 	%r110, 13;
+	mov.s32 	%r111, 12;
+	mov.s32 	%r112, 13;
+	st.global.v4.s8 	[E+16], {%r109,%r110,%r111,%r112};
+	mov.s32 	%r113, 14;
+	mov.s32 	%r114, 15;
+	mov.s32 	%r115, 16;
+	mov.s32 	%r116, 17;
+	st.global.v4.s8 	[E+20], {%r113,%r114,%r115,%r116};
+	mov.s32 	%r117, 16;
+	mov.s32 	%r118, 17;
+	mov.s32 	%r119, 18;
+	mov.s32 	%r120, 19;
+	st.global.v4.s8 	[E+24], {%r117,%r118,%r119,%r120};
+	mov.s32 	%r121, 20;
+	mov.s32 	%r122, 21;
+	mov.s32 	%r123, 20;
+	mov.s32 	%r124, 21;
+	st.global.v4.s8 	[E+28], {%r121,%r122,%r123,%r124};
+	mov.s32 	%r125, 22;
+	mov.s32 	%r126, 23;
+	mov.s32 	%r127, 24;
+	mov.s32 	%r128, 25;
+	st.global.v4.s8 	[E+32], {%r125,%r126,%r127,%r128};
+	mov.s32 	%r129, 24;
+	mov.s32 	%r130, 25;
+	mov.s32 	%r131, 26;
+	mov.s32 	%r132, 27;
+	st.global.v4.s8 	[E+36], {%r129,%r130,%r131,%r132};
+	mov.s32 	%r133, 28;
+	mov.s32 	%r134, 29;
+	mov.s32 	%r135, 28;
+	mov.s32 	%r136, 29;
+	st.global.v4.s8 	[E+40], {%r133,%r134,%r135,%r136};
+	mov.s32 	%r137, 30;
+	mov.s32 	%r138, 31;
+	mov.s32 	%r139, 32;
+	mov.s32 	%r140, 1;
+	st.global.v4.s8 	[E+44], {%r137,%r138,%r139,%r140};
+	.loc	15	400	0
+	mov.s16 	%rh73, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+0], %rh73;
+	mov.s16 	%rh74, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+1], %rh74;
+	mov.s16 	%rh75, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+2], %rh75;
+	mov.s16 	%rh76, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+3], %rh76;
+	mov.s16 	%rh77, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+4], %rh77;
+	mov.s16 	%rh78, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+5], %rh78;
+	mov.s16 	%rh79, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+6], %rh79;
+	mov.s16 	%rh80, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+7], %rh80;
+	mov.s16 	%rh81, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+8], %rh81;
+	mov.s16 	%rh82, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+9], %rh82;
+	mov.s16 	%rh83, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+10], %rh83;
+	mov.s16 	%rh84, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+11], %rh84;
+	mov.s16 	%rh85, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+12], %rh85;
+	mov.s16 	%rh86, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+13], %rh86;
+	mov.s16 	%rh87, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+14], %rh87;
+	mov.s16 	%rh88, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+15], %rh88;
+	mov.s16 	%rh89, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+16], %rh89;
+	mov.s16 	%rh90, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+17], %rh90;
+	mov.s16 	%rh91, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+18], %rh91;
+	mov.s16 	%rh92, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+19], %rh92;
+	mov.s16 	%rh93, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+20], %rh93;
+	mov.s16 	%rh94, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+21], %rh94;
+	mov.s16 	%rh95, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+22], %rh95;
+	mov.s16 	%rh96, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+23], %rh96;
+	mov.s16 	%rh97, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+24], %rh97;
+	mov.s16 	%rh98, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+25], %rh98;
+	mov.s16 	%rh99, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+26], %rh99;
+	mov.s16 	%rh100, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+27], %rh100;
+	mov.s16 	%rh101, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+28], %rh101;
+	mov.s16 	%rh102, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+29], %rh102;
+	mov.s16 	%rh103, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+30], %rh103;
+	mov.s16 	%rh104, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+31], %rh104;
+	mov.s16 	%rh105, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+32], %rh105;
+	mov.s16 	%rh106, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+33], %rh106;
+	mov.s16 	%rh107, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+34], %rh107;
+	mov.s16 	%rh108, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+35], %rh108;
+	mov.s16 	%rh109, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+36], %rh109;
+	mov.s16 	%rh110, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+37], %rh110;
+	mov.s16 	%rh111, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+38], %rh111;
+	mov.s16 	%rh112, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+39], %rh112;
+	mov.s16 	%rh113, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+40], %rh113;
+	mov.s16 	%rh114, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+41], %rh114;
+	mov.s16 	%rh115, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+42], %rh115;
+	mov.s16 	%rh116, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+43], %rh116;
+	mov.s16 	%rh117, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+44], %rh117;
+	mov.s16 	%rh118, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+45], %rh118;
+	mov.s16 	%rh119, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+46], %rh119;
+	mov.s16 	%rh120, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+47], %rh120;
+	mov.s16 	%rh121, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+48], %rh121;
+	mov.s16 	%rh122, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+49], %rh122;
+	mov.s16 	%rh123, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+50], %rh123;
+	mov.s16 	%rh124, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+51], %rh124;
+	mov.s16 	%rh125, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+52], %rh125;
+	mov.s16 	%rh126, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+53], %rh126;
+	mov.s16 	%rh127, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+54], %rh127;
+	mov.s16 	%rh128, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+55], %rh128;
+	mov.s16 	%rh129, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+56], %rh129;
+	mov.s16 	%rh130, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+57], %rh130;
+	mov.s16 	%rh131, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+58], %rh131;
+	mov.s16 	%rh132, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+59], %rh132;
+	mov.s16 	%rh133, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+60], %rh133;
+	mov.s16 	%rh134, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+61], %rh134;
+	mov.s16 	%rh135, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+62], %rh135;
+	mov.s16 	%rh136, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+63], %rh136;
+	mov.s16 	%rh137, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+64], %rh137;
+	mov.s16 	%rh138, 0;
+	st.local.s8 	[__cuda___cuda_local_var_98542_10_non_const_block_0944+65], %rh138;
+	ld.param.u64 	%rd40, [__cudaparm__Z5cryptPcS_S____val_paramsalt];
+	mov.s32 	%r3, 0;
+	mov.u64 	%rd41, E;
+$Lt_0_38658:
+ //<loop> Loop body line 400, nesting depth: 1, iterations: 2
+	.loc	15	405	0
+	ld.global.s8 	%r1, [%rd40+0];
+	mov.u32 	%r141, 90;
+	setp.le.s32 	%p9, %r1, %r141;
+	@%p9 bra 	$Lt_0_38914;
+	.loc	15	409	0
+	sub.s32 	%r142, %r1, 6;
+	cvt.s8.s32 	%r1, %r142;
+$Lt_0_38914:
+	mov.u32 	%r143, 57;
+	setp.le.s32 	%p10, %r1, %r143;
+	@%p10 bra 	$Lt_0_39426;
+	.loc	15	412	0
+	sub.s32 	%r1, %r1, 7;
+$Lt_0_39426:
+	sub.s32 	%r144, %r1, 46;
+	mov.s32 	%r145, %r144;
+	and.b32 	%r146, %r145, 1;
+	mov.u32 	%r147, 0;
+	setp.eq.s32 	%p11, %r146, %r147;
+	@%p11 bra 	$Lt_0_39938;
+	.loc	15	421	0
+	mul.lo.s32 	%r148, %r3, 6;
+	cvt.s64.s32 	%rd42, %r148;
+	add.u64 	%rd43, %rd42, %rd41;
+	ld.global.s8 	%rh139, [%rd43+0];
+	.loc	15	422	0
+	ld.global.s8 	%rh140, [%rd43+24];
+	st.global.s8 	[%rd43+0], %rh140;
+	.loc	15	423	0
+	st.global.s8 	[%rd43+24], %rh139;
+$Lt_0_39938:
+	shr.s32 	%r149, %r145, 1;
+	and.b32 	%r150, %r149, 1;
+	mov.u32 	%r151, 0;
+	setp.eq.s32 	%p12, %r150, %r151;
+	@%p12 bra 	$Lt_0_40450;
+	.loc	15	421	0
+	mul.lo.s32 	%r152, %r3, 6;
+	cvt.s64.s32 	%rd44, %r152;
+	add.u64 	%rd43, %rd44, %rd41;
+	ld.global.s8 	%rh139, [%rd43+1];
+	.loc	15	422	0
+	ld.global.s8 	%rh141, [%rd43+25];
+	st.global.s8 	[%rd43+1], %rh141;
+	.loc	15	423	0
+	st.global.s8 	[%rd43+25], %rh139;
+$Lt_0_40450:
+	shr.s32 	%r153, %r145, 2;
+	and.b32 	%r154, %r153, 1;
+	mov.u32 	%r155, 0;
+	setp.eq.s32 	%p13, %r154, %r155;
+	@%p13 bra 	$Lt_0_40962;
+	.loc	15	421	0
+	mul.lo.s32 	%r156, %r3, 6;
+	cvt.s64.s32 	%rd45, %r156;
+	add.u64 	%rd43, %rd45, %rd41;
+	ld.global.s8 	%rh139, [%rd43+2];
+	.loc	15	422	0
+	ld.global.s8 	%rh142, [%rd43+26];
+	st.global.s8 	[%rd43+2], %rh142;
+	.loc	15	423	0
+	st.global.s8 	[%rd43+26], %rh139;
+$Lt_0_40962:
+	shr.s32 	%r157, %r145, 3;
+	and.b32 	%r158, %r157, 1;
+	mov.u32 	%r159, 0;
+	setp.eq.s32 	%p14, %r158, %r159;
+	@%p14 bra 	$Lt_0_41474;
+	.loc	15	421	0
+	mul.lo.s32 	%r160, %r3, 6;
+	cvt.s64.s32 	%rd46, %r160;
+	add.u64 	%rd43, %rd46, %rd41;
+	ld.global.s8 	%rh139, [%rd43+3];
+	.loc	15	422	0
+	ld.global.s8 	%rh143, [%rd43+27];
+	st.global.s8 	[%rd43+3], %rh143;
+	.loc	15	423	0
+	st.global.s8 	[%rd43+27], %rh139;
+$Lt_0_41474:
+	shr.s32 	%r161, %r145, 4;
+	and.b32 	%r162, %r161, 1;
+	mov.u32 	%r163, 0;
+	setp.eq.s32 	%p15, %r162, %r163;
+	@%p15 bra 	$Lt_0_41986;
+	.loc	15	421	0
+	mul.lo.s32 	%r164, %r3, 6;
+	cvt.s64.s32 	%rd47, %r164;
+	add.u64 	%rd43, %rd47, %rd41;
+	ld.global.s8 	%rh139, [%rd43+4];
+	.loc	15	422	0
+	ld.global.s8 	%rh144, [%rd43+28];
+	st.global.s8 	[%rd43+4], %rh144;
+	.loc	15	423	0
+	st.global.s8 	[%rd43+28], %rh139;
+$Lt_0_41986:
+	shr.s32 	%r165, %r145, 5;
+	and.b32 	%r166, %r165, 1;
+	mov.u32 	%r167, 0;
+	setp.eq.s32 	%p16, %r166, %r167;
+	@%p16 bra 	$Lt_0_42498;
+	.loc	15	421	0
+	mul.lo.s32 	%r168, %r3, 6;
+	cvt.s64.s32 	%rd48, %r168;
+	add.u64 	%rd43, %rd48, %rd41;
+	ld.global.s8 	%rh139, [%rd43+5];
+	.loc	15	422	0
+	ld.global.s8 	%rh145, [%rd43+29];
+	st.global.s8 	[%rd43+5], %rh145;
+	.loc	15	423	0
+	st.global.s8 	[%rd43+29], %rh139;
+$Lt_0_42498:
+	add.s32 	%r3, %r3, 1;
+	add.u64 	%rd40, %rd40, 1;
+	mov.u32 	%r169, 2;
+	setp.ne.s32 	%p17, %r3, %r169;
+	@%p17 bra 	$Lt_0_38658;
+	mov.u64 	%rd49, __cuda___cuda_local_var_98444_20_non_const_right_661010;
+	mov.u64 	%rd50, IP+32;
+	add.u64 	%rd51, %rd49, 32;
+	mov.s32 	%r3, 0;
+	mov.u64 	%rd52, FP;
+	mov.u64 	%rd53, __cuda___cuda_local_var_98446_10_non_const_f_981042;
+	mov.u64 	%rd54, S;
+	mov.u64 	%rd55, preS;
+	mov.u64 	%rd56, __cuda___cuda_local_var_98444_10_non_const_left_1301074;
+	mov.u64 	%rd57, P;
+$Lt_0_43778:
+ //<loop> Loop body line 423, nesting depth: 1, iterations: 25
+	.loc	15	289	0
+	ld.local.s8 	%rh146, [__cuda___cuda_local_var_98542_10_non_const_block_0944+57];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+0], %rh146;
+	ld.local.s8 	%rh147, [__cuda___cuda_local_var_98542_10_non_const_block_0944+49];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+1], %rh147;
+	ld.local.s8 	%rh148, [__cuda___cuda_local_var_98542_10_non_const_block_0944+41];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+2], %rh148;
+	ld.local.s8 	%rh149, [__cuda___cuda_local_var_98542_10_non_const_block_0944+33];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+3], %rh149;
+	ld.local.s8 	%rh150, [__cuda___cuda_local_var_98542_10_non_const_block_0944+25];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+4], %rh150;
+	ld.local.s8 	%rh151, [__cuda___cuda_local_var_98542_10_non_const_block_0944+17];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+5], %rh151;
+	ld.local.s8 	%rh152, [__cuda___cuda_local_var_98542_10_non_const_block_0944+9];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+6], %rh152;
+	ld.local.s8 	%rh153, [__cuda___cuda_local_var_98542_10_non_const_block_0944+1];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+7], %rh153;
+	ld.local.s8 	%rh154, [__cuda___cuda_local_var_98542_10_non_const_block_0944+59];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+8], %rh154;
+	ld.local.s8 	%rh155, [__cuda___cuda_local_var_98542_10_non_const_block_0944+51];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+9], %rh155;
+	ld.local.s8 	%rh156, [__cuda___cuda_local_var_98542_10_non_const_block_0944+43];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+10], %rh156;
+	ld.local.s8 	%rh157, [__cuda___cuda_local_var_98542_10_non_const_block_0944+35];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+11], %rh157;
+	ld.local.s8 	%rh158, [__cuda___cuda_local_var_98542_10_non_const_block_0944+27];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+12], %rh158;
+	ld.local.s8 	%rh159, [__cuda___cuda_local_var_98542_10_non_const_block_0944+19];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+13], %rh159;
+	ld.local.s8 	%rh160, [__cuda___cuda_local_var_98542_10_non_const_block_0944+11];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+14], %rh160;
+	ld.local.s8 	%rh161, [__cuda___cuda_local_var_98542_10_non_const_block_0944+3];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+15], %rh161;
+	ld.local.s8 	%rh162, [__cuda___cuda_local_var_98542_10_non_const_block_0944+61];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+16], %rh162;
+	ld.local.s8 	%rh163, [__cuda___cuda_local_var_98542_10_non_const_block_0944+53];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+17], %rh163;
+	ld.local.s8 	%rh164, [__cuda___cuda_local_var_98542_10_non_const_block_0944+45];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+18], %rh164;
+	ld.local.s8 	%rh165, [__cuda___cuda_local_var_98542_10_non_const_block_0944+37];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+19], %rh165;
+	ld.local.s8 	%rh166, [__cuda___cuda_local_var_98542_10_non_const_block_0944+29];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+20], %rh166;
+	ld.local.s8 	%rh167, [__cuda___cuda_local_var_98542_10_non_const_block_0944+21];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+21], %rh167;
+	ld.local.s8 	%rh168, [__cuda___cuda_local_var_98542_10_non_const_block_0944+13];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+22], %rh168;
+	ld.local.s8 	%rh169, [__cuda___cuda_local_var_98542_10_non_const_block_0944+5];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+23], %rh169;
+	ld.local.s8 	%rh170, [__cuda___cuda_local_var_98542_10_non_const_block_0944+63];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+24], %rh170;
+	ld.local.s8 	%rh171, [__cuda___cuda_local_var_98542_10_non_const_block_0944+55];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+25], %rh171;
+	ld.local.s8 	%rh172, [__cuda___cuda_local_var_98542_10_non_const_block_0944+47];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+26], %rh172;
+	ld.local.s8 	%rh173, [__cuda___cuda_local_var_98542_10_non_const_block_0944+39];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+27], %rh173;
+	ld.local.s8 	%rh174, [__cuda___cuda_local_var_98542_10_non_const_block_0944+31];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+28], %rh174;
+	ld.local.s8 	%rh175, [__cuda___cuda_local_var_98542_10_non_const_block_0944+23];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+29], %rh175;
+	ld.local.s8 	%rh176, [__cuda___cuda_local_var_98542_10_non_const_block_0944+15];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+30], %rh176;
+	ld.local.s8 	%rh177, [__cuda___cuda_local_var_98542_10_non_const_block_0944+7];
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+31], %rh177;
+	mov.s64 	%rd58, %rd50;
+	mov.s64 	%rd59, %rd51;
+	mov.s32 	%r170, 32;
+$Lt_0_44546:
+ //<loop> Loop body line 289, nesting depth: 2, iterations: 32
+	.loc	15	292	0
+	ld.global.s8 	%rh178, [%rd58+0];
+	cvt.s64.s8 	%rd60, %rh178;
+	add.u64 	%rd61, %rd60, %rd3;
+	ld.local.s8 	%rh179, [%rd61+-1];
+	st.local.s8 	[%rd59+-32], %rh179;
+	.loc	15	291	0
+	add.s32 	%r170, %r170, 1;
+	add.u64 	%rd59, %rd59, 1;
+	add.u64 	%rd58, %rd58, 1;
+	mov.u32 	%r171, 64;
+	setp.ne.s32 	%p18, %r170, %r171;
+	@%p18 bra 	$Lt_0_44546;
+	mov.s64 	%rd62, %rd32;
+	mov.s32 	%r172, 0;
+$Lt_0_45570:
+ //<loop> Loop body line 291, nesting depth: 2, iterations: 16
+	.loc	15	300	0
+	ld.local.s8 	%rh180, [__cuda___cuda_local_var_98444_20_non_const_right_661010+0];
+	mov.s16 	%rh181, %rh180;
+	ld.local.s8 	%rh182, [__cuda___cuda_local_var_98444_20_non_const_right_661010+1];
+	mov.s16 	%rh183, %rh182;
+	ld.local.s8 	%rh184, [__cuda___cuda_local_var_98444_20_non_const_right_661010+2];
+	mov.s16 	%rh185, %rh184;
+	ld.local.s8 	%rh186, [__cuda___cuda_local_var_98444_20_non_const_right_661010+3];
+	mov.s16 	%rh187, %rh186;
+	ld.local.s8 	%rh188, [__cuda___cuda_local_var_98444_20_non_const_right_661010+4];
+	mov.s16 	%rh189, %rh188;
+	ld.local.s8 	%rh190, [__cuda___cuda_local_var_98444_20_non_const_right_661010+5];
+	mov.s16 	%rh191, %rh190;
+	ld.local.s8 	%rh192, [__cuda___cuda_local_var_98444_20_non_const_right_661010+6];
+	mov.s16 	%rh193, %rh192;
+	ld.local.s8 	%rh194, [__cuda___cuda_local_var_98444_20_non_const_right_661010+7];
+	mov.s16 	%rh195, %rh194;
+	ld.local.s8 	%rh196, [__cuda___cuda_local_var_98444_20_non_const_right_661010+8];
+	mov.s16 	%rh197, %rh196;
+	ld.local.s8 	%rh198, [__cuda___cuda_local_var_98444_20_non_const_right_661010+9];
+	mov.s16 	%rh199, %rh198;
+	ld.local.s8 	%rh200, [__cuda___cuda_local_var_98444_20_non_const_right_661010+10];
+	mov.s16 	%rh201, %rh200;
+	ld.local.s8 	%rh202, [__cuda___cuda_local_var_98444_20_non_const_right_661010+11];
+	mov.s16 	%rh203, %rh202;
+	ld.local.s8 	%rh204, [__cuda___cuda_local_var_98444_20_non_const_right_661010+12];
+	mov.s16 	%rh205, %rh204;
+	ld.local.s8 	%rh206, [__cuda___cuda_local_var_98444_20_non_const_right_661010+13];
+	mov.s16 	%rh207, %rh206;
+	ld.local.s8 	%rh208, [__cuda___cuda_local_var_98444_20_non_const_right_661010+14];
+	mov.s16 	%rh209, %rh208;
+	ld.local.s8 	%rh210, [__cuda___cuda_local_var_98444_20_non_const_right_661010+15];
+	mov.s16 	%rh211, %rh210;
+	ld.local.s8 	%rh212, [__cuda___cuda_local_var_98444_20_non_const_right_661010+16];
+	mov.s16 	%rh213, %rh212;
+	ld.local.s8 	%rh214, [__cuda___cuda_local_var_98444_20_non_const_right_661010+17];
+	mov.s16 	%rh215, %rh214;
+	ld.local.s8 	%rh216, [__cuda___cuda_local_var_98444_20_non_const_right_661010+18];
+	mov.s16 	%rh217, %rh216;
+	ld.local.s8 	%rh218, [__cuda___cuda_local_var_98444_20_non_const_right_661010+19];
+	mov.s16 	%rh219, %rh218;
+	ld.local.s8 	%rh220, [__cuda___cuda_local_var_98444_20_non_const_right_661010+20];
+	mov.s16 	%rh221, %rh220;
+	ld.local.s8 	%rh222, [__cuda___cuda_local_var_98444_20_non_const_right_661010+21];
+	mov.s16 	%rh223, %rh222;
+	ld.local.s8 	%rh224, [__cuda___cuda_local_var_98444_20_non_const_right_661010+22];
+	mov.s16 	%rh225, %rh224;
+	ld.local.s8 	%rh226, [__cuda___cuda_local_var_98444_20_non_const_right_661010+23];
+	mov.s16 	%rh227, %rh226;
+	ld.local.s8 	%rh228, [__cuda___cuda_local_var_98444_20_non_const_right_661010+24];
+	mov.s16 	%rh229, %rh228;
+	ld.local.s8 	%rh230, [__cuda___cuda_local_var_98444_20_non_const_right_661010+25];
+	mov.s16 	%rh231, %rh230;
+	ld.local.s8 	%rh232, [__cuda___cuda_local_var_98444_20_non_const_right_661010+26];
+	mov.s16 	%rh233, %rh232;
+	ld.local.s8 	%rh234, [__cuda___cuda_local_var_98444_20_non_const_right_661010+27];
+	mov.s16 	%rh235, %rh234;
+	ld.local.s8 	%rh236, [__cuda___cuda_local_var_98444_20_non_const_right_661010+28];
+	mov.s16 	%rh237, %rh236;
+	ld.local.s8 	%rh238, [__cuda___cuda_local_var_98444_20_non_const_right_661010+29];
+	mov.s16 	%rh239, %rh238;
+	ld.local.s8 	%rh240, [__cuda___cuda_local_var_98444_20_non_const_right_661010+30];
+	mov.s16 	%rh241, %rh240;
+	ld.local.s8 	%rh242, [__cuda___cuda_local_var_98444_20_non_const_right_661010+31];
+	mov.s16 	%rh243, %rh242;
+	mov.s64 	%rd63, %rd41;
+	mov.s64 	%rd64, %rd55;
+	mov.s64 	%rd65, %rd62;
+	mov.s32 	%r170, 0;
+$Lt_0_46338:
+ //<loop> Loop body line 300, nesting depth: 3, iterations: 48
+	.loc	15	307	0
+	ld.global.s8 	%r173, [%rd63+0];
+	cvt.s64.s32 	%rd66, %r173;
+	add.u64 	%rd67, %rd66, %rd49;
+	ld.local.s8 	%rh244, [%rd67+-1];
+	ld.global.s8 	%rh245, [%rd65+0];
+	xor.b16 	%rh246, %rh244, %rh245;
+	st.global.s8 	[%rd64+0], %rh246;
+	add.s32 	%r170, %r170, 1;
+	add.u64 	%rd65, %rd65, 1;
+	add.u64 	%rd64, %rd64, 1;
+	add.u64 	%rd63, %rd63, 1;
+	mov.u32 	%r174, 48;
+	setp.ne.s32 	%p19, %r170, %r174;
+	@%p19 bra 	$Lt_0_46338;
+	mov.s32 	%r175, 0;
+	mov.s64 	%rd68, 0;
+	mov.s64 	%rd69, %rd55;
+	mov.u64 	%rd70, __cuda___cuda_local_var_98446_10_non_const_f_981042;
+$Lt_0_47362:
+ //<loop> Loop body line 307, nesting depth: 3, iterations: 8
+	.loc	15	319	0
+	ld.global.s8 	%r176, [%rd69+4];
+	ld.global.s8 	%r177, [%rd69+5];
+	shl.b32 	%r178, %r177, 4;
+	add.s32 	%r179, %r176, %r178;
+	ld.global.s8 	%r180, [%rd69+0];
+	shl.b32 	%r181, %r180, 5;
+	ld.global.s8 	%r182, [%rd69+1];
+	shl.b32 	%r183, %r182, 3;
+	add.s32 	%r184, %r181, %r183;
+	ld.global.s8 	%r185, [%rd69+2];
+	shl.b32 	%r186, %r185, 2;
+	ld.global.s8 	%r187, [%rd69+3];
+	shl.b32 	%r188, %r187, 1;
+	add.s32 	%r189, %r186, %r188;
+	add.s32 	%r190, %r184, %r189;
+	add.s32 	%r191, %r179, %r190;
+	cvt.s64.s32 	%rd71, %r191;
+	add.u64 	%rd72, %rd71, %rd68;
+	add.u64 	%rd73, %rd54, %rd72;
+	ld.global.s8 	%r192, [%rd73+0];
+	.loc	15	328	0
+	shr.s32 	%r193, %r192, 3;
+	and.b32 	%r194, %r193, 1;
+	st.local.s8 	[%rd70+0], %r194;
+	.loc	15	329	0
+	shr.s32 	%r195, %r192, 2;
+	and.b32 	%r196, %r195, 1;
+	st.local.s8 	[%rd70+1], %r196;
+	.loc	15	330	0
+	shr.s32 	%r197, %r192, 1;
+	and.b32 	%r198, %r197, 1;
+	st.local.s8 	[%rd70+2], %r198;
+	.loc	15	331	0
+	and.b32 	%r199, %r192, 1;
+	st.local.s8 	[%rd70+3], %r199;
+	add.u64 	%rd70, %rd70, 4;
+	add.s32 	%r175, %r175, 6;
+	add.u64 	%rd69, %rd69, 6;
+	add.u64 	%rd68, %rd68, 64;
+	mov.u32 	%r200, 48;
+	setp.ne.s32 	%p20, %r175, %r200;
+	@%p20 bra 	$Lt_0_47362;
+	mov.u64 	%rd59, __cuda___cuda_local_var_98444_20_non_const_right_661010;
+	mov.s64 	%rd74, %rd57;
+	mov.u64 	%rd75, __cuda___cuda_local_var_98444_10_non_const_left_1301074;
+	mov.s32 	%r170, 0;
+$Lt_0_48386:
+ //<loop> Loop body line 331, nesting depth: 3, iterations: 32
+	.loc	15	339	0
+	ld.global.s8 	%r201, [%rd74+0];
+	cvt.s64.s32 	%rd76, %r201;
+	add.u64 	%rd77, %rd76, %rd53;
+	ld.local.s8 	%rh247, [%rd77+-1];
+	ld.local.s8 	%rh248, [%rd75+0];
+	xor.b16 	%rh249, %rh247, %rh248;
+	st.local.s8 	[%rd59+0], %rh249;
+	add.s32 	%r170, %r170, 1;
+	add.u64 	%rd75, %rd75, 1;
+	add.u64 	%rd74, %rd74, 1;
+	add.u64 	%rd59, %rd59, 1;
+	mov.u32 	%r202, 32;
+	setp.ne.s32 	%p21, %r170, %r202;
+	@%p21 bra 	$Lt_0_48386;
+	.loc	15	343	0
+	mov.s16 	%rh250, %rh181;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+0], %rh250;
+	mov.s16 	%rh251, %rh183;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+1], %rh251;
+	mov.s16 	%rh252, %rh185;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+2], %rh252;
+	mov.s16 	%rh253, %rh187;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+3], %rh253;
+	mov.s16 	%rh254, %rh189;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+4], %rh254;
+	mov.s16 	%rh255, %rh191;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+5], %rh255;
+	mov.s16 	%rh256, %rh193;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+6], %rh256;
+	mov.s16 	%rh257, %rh195;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+7], %rh257;
+	mov.s16 	%rh258, %rh197;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+8], %rh258;
+	mov.s16 	%rh259, %rh199;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+9], %rh259;
+	mov.s16 	%rh260, %rh201;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+10], %rh260;
+	mov.s16 	%rh261, %rh203;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+11], %rh261;
+	mov.s16 	%rh262, %rh205;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+12], %rh262;
+	mov.s16 	%rh263, %rh207;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+13], %rh263;
+	mov.s16 	%rh264, %rh209;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+14], %rh264;
+	mov.s16 	%rh265, %rh211;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+15], %rh265;
+	mov.s16 	%rh266, %rh213;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+16], %rh266;
+	mov.s16 	%rh267, %rh215;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+17], %rh267;
+	mov.s16 	%rh268, %rh217;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+18], %rh268;
+	mov.s16 	%rh269, %rh219;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+19], %rh269;
+	mov.s16 	%rh270, %rh221;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+20], %rh270;
+	mov.s16 	%rh271, %rh223;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+21], %rh271;
+	mov.s16 	%rh272, %rh225;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+22], %rh272;
+	mov.s16 	%rh273, %rh227;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+23], %rh273;
+	mov.s16 	%rh274, %rh229;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+24], %rh274;
+	mov.s16 	%rh275, %rh231;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+25], %rh275;
+	mov.s16 	%rh276, %rh233;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+26], %rh276;
+	mov.s16 	%rh277, %rh235;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+27], %rh277;
+	mov.s16 	%rh278, %rh237;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+28], %rh278;
+	mov.s16 	%rh279, %rh239;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+29], %rh279;
+	mov.s16 	%rh280, %rh241;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+30], %rh280;
+	st.local.s8 	[__cuda___cuda_local_var_98444_10_non_const_left_1301074+31], %rh242;
+	add.s32 	%r172, %r172, 1;
+	add.u64 	%rd62, %rd62, 48;
+	mov.u32 	%r203, 16;
+	setp.ne.s32 	%p22, %r172, %r203;
+	@%p22 bra 	$Lt_0_45570;
+	mov.u64 	%rd59, __cuda___cuda_local_var_98444_20_non_const_right_661010;
+	mov.u64 	%rd75, __cuda___cuda_local_var_98444_10_non_const_left_1301074;
+	mov.s32 	%r170, 0;
+$Lt_0_49666:
+ //<loop> Loop body line 343, nesting depth: 2, iterations: 32
+	.loc	15	349	0
+	ld.local.s8 	%rh281, [%rd75+0];
+	.loc	15	350	0
+	ld.local.s8 	%rh282, [%rd59+0];
+	st.local.s8 	[%rd75+0], %rh282;
+	.loc	15	351	0
+	st.local.s8 	[%rd59+0], %rh281;
+	add.s32 	%r170, %r170, 1;
+	add.u64 	%rd75, %rd75, 1;
+	add.u64 	%rd59, %rd59, 1;
+	mov.u32 	%r204, 32;
+	setp.ne.s32 	%p23, %r170, %r204;
+	@%p23 bra 	$Lt_0_49666;
+	mov.s64 	%rd78, %rd52;
+	mov.u64 	%rd79, __cuda___cuda_local_var_98542_10_non_const_block_0944;
+	mov.s32 	%r170, 0;
+$Lt_0_50690:
+ //<loop> Loop body line 351, nesting depth: 2, iterations: 64
+	ld.global.s8 	%r205, [%rd78+0];
+	cvt.s64.s32 	%rd80, %r205;
+	mov.u32 	%r206, 32;
+	setp.gt.s32 	%p24, %r205, %r206;
+	@%p24 bra 	$Lt_0_51202;
+	.loc	15	359	0
+	add.u64 	%rd81, %rd80, %rd56;
+	ld.local.s8 	%rh283, [%rd81+-1];
+	st.local.s8 	[%rd79+0], %rh283;
+	bra.uni 	$Lt_0_50946;
+$Lt_0_51202:
+	.loc	15	361	0
+	add.u64 	%rd82, %rd80, %rd49;
+	ld.local.s8 	%rh284, [%rd82+-33];
+	st.local.s8 	[%rd79+0], %rh284;
+$Lt_0_50946:
+	add.s32 	%r170, %r170, 1;
+	add.u64 	%rd79, %rd79, 1;
+	add.u64 	%rd78, %rd78, 1;
+	mov.u32 	%r207, 64;
+	setp.ne.s32 	%p25, %r170, %r207;
+	@%p25 bra 	$Lt_0_50690;
+	.loc	15	430	0
+	add.s32 	%r3, %r3, 1;
+	mov.u32 	%r208, 25;
+	setp.ne.s32 	%p26, %r3, %r208;
+	@%p26 bra 	$Lt_0_43778;
+	.loc	15	459	0
+	exit;
+$LDWend__Z5cryptPcS_S_:
+	} // _Z5cryptPcS_S_
+	.global .align 1 .b8 e2[48] = {32,1,2,3,4,5,4,5,6,7,8,9,8,9,10,11,12,13,12,13,14,15,16,17,16,17,18,19,20,21,20,21,22,23,24,25,24,25,26,27,28,29,28,29,30,31,32,1};
+

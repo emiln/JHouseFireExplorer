@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="housefire" default="test" basedir=".">
+
+  <property name="project" value="housefire" />
+  <property name="build-dir" value="build" />
+  <property name="dist-dir" value="dist" />
+  <property name="doc-dir" value="javadoc" />
+  <property name="src-dir" value="src" />
+  <property name="cp" value=".;build;automaton/dist/automaton.jar" />
+  <property name="optimize" value="on" />
+  <property name="debug" value="off" />
+
+  <target name="all" depends="jar,doc" />
+
+  <target name="benchmark" depends="compile">
+    <java classname="HashBenchmark"
+	  classpath="${cp}"
+	  fork="yes">
+    </java>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="${build-dir}" />
+    <javac srcdir="${src-dir}" destdir="${build-dir}" optimize="${optimize}"
+           debug="${debug}"
+	   includeantruntime="false">
+      <classpath>
+	<pathelement path="${cp}" />
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="optimize" depends="clean">
+    <mkdir dir="${build-dir}" />
+    <javac srcdir="${src-dir}" destdir="${build-dir}" optimize="${optimize}"
+           debug="${debug}"
+	   includeantruntime="false">
+      <classpath>
+	<pathelement path="${cp}" />
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="test" depends="compile">
+    <java classname="Driver"
+	  fork="yes"
+	  classpath="build;automaton/dist/automaton.jar">
+      <arg value="-server" />
+    </java>
+  </target>
+
+  <target name="zip" depends="jar">
+    <zip destfile="housefire.zip"
+	 basedir="${dist-dir}"
+	 update="true" />
+  </target>
+
+  <target name="jar" depends="compile">
+    <delete dir="${dist-dir}" />
+    <mkdir dir="${dist-dir}" />
+    <copy todir="${dist-dir}/doc">
+      <fileset dir="doc" />
+    </copy>
+    <copy todir="${dist-dir}/automaton/dist">
+      <fileset dir="automaton/dist" />
+    </copy>
+    <copy todir="${dist-dir}/images">
+      <fileset dir="images" />
+    </copy>
+    <jar jarfile="${dist-dir}/${project}.jar">
+      <fileset dir="${build-dir}" />
+      <manifest>
+	<attribute name="Class-Path" value="automaton/dist/automaton.jar" />
+	<attribute name="Main-Class" value="Driver" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build-dir}" />
+    <delete dir="${doc-dir}" />
+    <delete dir="${dist-dir}" />
+  </target>
+
+  <target name="doc" depends="jar">
+    <mkdir dir="${doc-dir}" />
+    <javadoc sourcepath="${src-dir}"
+             destdir="${doc-dir}">
+      <doctitle><![CDATA[JHouseFire<br>API Specification]]></doctitle>
+      <bottom><![CDATA[<i> Copyright &#169; 2012 u're mum. </i>]]></bottom>
+      <link href="http://goatsemarathon.com" />
+    </javadoc>
+  </target>
+</project>
