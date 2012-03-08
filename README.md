@@ -15,6 +15,9 @@ used on the popular 4chan imageboard.
 
 * CUDA.
 * Optimizing the DES crypt algorithm. It is dreadfully slow.
+* Solving the issue of different threads calculating the same tripcodes.
+* Adding support for auto-saving to file.
+* Writing explanation of regular expressions - possibly in a new tab.
 
 ## How do I compile and run the thing?
 
