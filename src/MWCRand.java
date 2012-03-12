@@ -12,8 +12,8 @@ public class MWCRand {
         }
     }
     public static void init(int x, int c, int phi) {
-	MWCRand.c = c;
-	MWCRand.phi = phi;
+    MWCRand.c = c;
+    MWCRand.phi = phi;
         int i;
         Q[0] = x;
         Q[1] = x + phi;

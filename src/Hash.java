@@ -1,8 +1,8 @@
 public class Hash {
     public static String getTripCode(final String plainText) {
-	final String salt = "" + ((char)plainText.codePointAt(1)) +
-	    ((char)plainText.codePointAt(2));
-	return Crypt2.crypt(plainText, salt).substring(3);
+    final String salt = "" + ((char)plainText.codePointAt(1)) +
+        ((char)plainText.codePointAt(2));
+    return Crypt2.crypt(plainText, salt).substring(3);
     }
     private static final int con_salt[] = {
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
