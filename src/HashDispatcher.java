@@ -75,7 +75,7 @@ public class HashDispatcher {
 		    GUI.addTrip(pass, trip);
 		}
 		// Find the next password to calculate the tripcode of.
-		// TODO: find a method that does not overlap with other treads.
+		// TODO: find a method that does not overlap with other threads.
                 pass = trip;
 		// Update the counter every 100 tripcodes.
                 if ((ticks = ++ticks % 100) == 0) {
